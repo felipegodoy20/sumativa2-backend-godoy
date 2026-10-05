@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ tema.nombre }}{% endblock %}
+{% block content %}
+<h1>{{ tema.nombre }}</h1>
+<p>{{ tema.descripcion }}</p>
+
+{% if tema.imagenes %}
+<div id="carouselTema" class="carousel slide">
+  <div class="carousel-inner">
+    {% for img in tema.imagenes %}
+    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+      <img src="{% static img %}" class="d-block w-100" alt="Imagen {{ forloop.counter }}">
+    </div>
+    {% endfor %}
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselTema" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselTema" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+{% endif %}
+{% endblock %}
